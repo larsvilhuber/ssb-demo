@@ -11,21 +11,22 @@
 /* Create a log file */
 local c_date = c(current_date)
 local cdate = subinstr("`c_date'", " ", "_", .)
-local logprefix "logfile" // could be "myprog" or something else or could come from the main program 
-log using "`logprefix`_`cdate'.log", replace text
+// local logprefix "logfile" // could be "myprog" or something else or could come from the main program 
+log using "$}logprefix}_`cdate'.log", replace text
 
 /* define global parameters and paths */
 global precision 0.01
 
 /* paths */
-global basepath "/path/to/project"      // change this for your specific system
-global inputdata "$basepath/inputdata"  // this is where you would read data acquired elsewhere
+global basepath "/code"      // change this for your specific system
+global inputdata "/data"  // this is where you would read data acquired elsewhere
 global outputdata "$basepath/outputdata" // this is where you would write the data you create in this project
 global results "$basepath/tables"       // All tables for inclusion in your paper go here
 global programs "$basepath/programs"    // All programs (which you might "include") are to be found here
 global adobase  "$basepath/programs/ado" // Ado packages used by the project are to be found here
 
 /* install any packages locally */
+/* on codeocean, these should go into the post-install script! */
 capture mkdir "$adobase"
 sysdir set PERSONAL "$adobase/ado/personal"
 sysdir set PLUS     "$adobase/ado/plus"
