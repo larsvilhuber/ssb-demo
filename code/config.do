@@ -21,7 +21,7 @@ global precision 0.01
 global SSBversion 7_0
 global SSBtype synthetic
 global SSBnum 4
-global SSBprefix = ssb_v${SSBversion}_${SSBtype}
+global SSBprefix = "ssb_v${SSBversion}_${SSBtype}"
 
 /* paths */
 global basepath "/code"      // change this for your specific system
