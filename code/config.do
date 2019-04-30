@@ -17,6 +17,12 @@ log using "/results/${logprefix}_`cdate'.log", replace text
 /* define global parameters and paths */
 global precision 0.01
 
+/* SSB parameters */
+global SSBversion 7_0
+global SSBtype synthetic
+global SSBnum 4
+global SSBprefix = ssb_v${SSBversion}_${SSBtype}
+
 /* paths */
 global basepath "/code"      // change this for your specific system
 global inputdata "/data"  // this is where you would read data acquired elsewhere
