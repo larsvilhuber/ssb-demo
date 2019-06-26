@@ -4,3 +4,5 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 COPY license.lic /usr/local/stata/stata.lic
 RUN stata 'ssc install estout' # version 3.21
+RUN stata 'ssc install esttab'
+RUN stata 'ssc install outreg'

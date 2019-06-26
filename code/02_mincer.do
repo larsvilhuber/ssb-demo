@@ -157,7 +157,7 @@ label var potexp_sq "Pot. Exp. Squared"
 label var age "Age"
 label var age_sq "Age Squared"
 
-esttab using $results/mincer_results.csv, se r2 mtitles("OLS-Males" "2SLS-Males" "OLS-Males" "2SLS-Males" "OLS-Females" "2SLS-Females" "OLS-Females" "2SLS-Females") keep(educyears1 potexp potexp_sq age age_sq) label replace
+esttab using /results/mincer_results.csv, se r2 mtitles("OLS-Males" "2SLS-Males" "OLS-Males" "2SLS-Males" "OLS-Females" "2SLS-Females" "OLS-Females" "2SLS-Females") keep(educyears1 potexp potexp_sq age age_sq) label replace
 
 
 

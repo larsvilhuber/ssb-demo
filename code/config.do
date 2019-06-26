@@ -33,10 +33,10 @@ global adobase  "$basepath/programs/ado" // Ado packages used by the project are
 
 /* install any packages locally */
 /* on codeocean, these should go into the post-install script! */
-capture mkdir "$adobase"
-sysdir set PERSONAL "$adobase/ado/personal"
-sysdir set PLUS     "$adobase/ado/plus"
-sysdir set SITE     "$adobase/ado/site"
+*capture mkdir "$adobase"
+*sysdir set PERSONAL "$adobase/ado/personal"
+*sysdir set PLUS     "$adobase/ado/plus"
+*sysdir set SITE     "$adobase/ado/site"
 
 
 
