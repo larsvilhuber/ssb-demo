@@ -8,6 +8,6 @@ include "config.do"
 
 /* Now install them */
 /*--- SSC packages ---*/
-foreach pkg in outreg esttab  {
+foreach pkg in outreg esttab eststo  {
   ssc install `pkg'
 }
