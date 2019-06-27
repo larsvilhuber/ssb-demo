@@ -1,3 +1,10 @@
 metadata_version: 1
 name: SSB Demo
+authors:
+- name: Evan Scott Totty
+  affiliations:
+  - name: U.S. Census Bureau
+- name: Lars Vilhuber
+  affiliations:
+  - name: Cornell University
 corresponding_contributor: {}
