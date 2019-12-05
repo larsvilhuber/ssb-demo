@@ -26,17 +26,19 @@ global SSBprefix = "ssb_v${SSBversion}_${SSBtype}"
 /* paths */
 global basepath "/code"      // change this for your specific system
 global inputdata "../data"  // this is where you would read data acquired elsewhere
-global outputdata "$basepath/outputdata" // this is where you would write the data you create in this project
-global results "$basepath/tables"       // All tables for inclusion in your paper go here
-global programs "$basepath/programs"    // All programs (which you might "include") are to be found here
-global adobase  "$basepath/programs/ado" // Ado packages used by the project are to be found here
+global results "../results"       // All tables for inclusion in your paper go here
+global programs "$basepath"    // All programs (which you might "include") are to be found here
+global outputdata "$results/outputdata" // this is where you would write the data you create in this project
+global adobase  "$programs/ado" // Ado packages used by the project are to be found here
+
+cap mkdir $outputdata
+cap mkdir $adobase
 
 /* install any packages locally */
 /* on codeocean, these should go into the post-install script! */
-*capture mkdir "$adobase"
-*sysdir set PERSONAL "$adobase/ado/personal"
-*sysdir set PLUS     "$adobase/ado/plus"
-*sysdir set SITE     "$adobase/ado/site"
+sysdir set PERSONAL "$adobase/personal"
+sysdir set PLUS     "$adobase/plus"
+sysdir set SITE     "$adobase/site"
 
 
 
