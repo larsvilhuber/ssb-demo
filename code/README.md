@@ -1,6 +1,43 @@
 # Demonstration of Synthetic and Confidential Data Processing
 
-We demonstrate a simple scenario.
+We demonstrate a simple scenario of using CodeOcean to faciliate synthetic and confidential data processing. The purpose of using CodeOcean is to provide users with access to data and coding resources such that
+their analysis is easily reproducible. Reproducibility is important for synthetic data products when there
+is a validation or verification process involved. In such a setting, data users will first use the synthetic
+data to build and test their code for a desired analysis. Once the user is satisfied with the code used to
+perform their analysis, they can request a validation and their code will be run by the Census Bureau on
+the confidential data. Output from the analysis on the confidential data will then have to satisfy the
+Census Bureau’s Disclosure Review Board requirements before it can be released to the user.
+
+In order for this process to run smoothly, the data user’s code needs to be able to run succesfully on any
+machine, regardless of any local settings. This ensures that the user’s code can be easily transferred and
+run on the confidential data. This can be achieved by using a Docker. A Docker contains all of the
+necessary libraries, dependencies, and code needed to run an analysis packaged together in a single
+container. This container can then be downloaded to any machine and used with the local system to run
+the application.
+
+CodeOcean uses a compute capsule, based on a Docker, that can help ensure that the entire code
+building, validation, and output release process is simple and efficient for both the data user and the
+Census Bureau. The Census Bureau can use CodeOcean to house both the synthetic dataset as well as
+setup and configuration code that will assist the data user in creating code that is reproducible. The data
+user can then build on the setup and configuration code provided by the Census Bureau to perform their
+desired analysis. To perform the analysis on the synthetic data, users may either run the code directly on
+CodeOcean by paying for access to computing resources (CodeOcean also provides a limited amount of
+storage space and computing time for free), or they may download the compute capsule to their local
+machine and user their own computing resources. When the user requests a validation, the Census
+Bureau can download the user’s compute capsule, make minimal changes to excecute the analysis on a
+secure sever with the confidential data, and then run the user’s code and reproduce their analysis on
+the confidential data.
+
+In addition to providing a location for the Census Bureau and data users to share access to the synthetic
+dataset and code, it also ensures that the analysis will run correctly for both the data user and on the
+confidential data. One problem that can arise when maintaining a validation process is when the
+computing environment on the data user’s end does not exactly match the computing environment for
+the internal validation. This can lead to validation attempts that fail to run correctly or at all, which
+increases the wait time for data users and the time involved in performing the validation for the Census
+Bureau. The compute capsules on CodeOcean can prevent this problem by packaging not only the data
+and analysis code, but also specifying the computational environment. By ensuring that everything can
+run within the CodeOcean compute capsule using the synthetic data, it also ensures that everything can
+be run within the CodeOcean compute capsule using the confidential data.
 
 ## Development of code on open compute servers using synthetic data
 
