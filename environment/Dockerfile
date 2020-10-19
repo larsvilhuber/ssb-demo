@@ -1,5 +1,5 @@
-# hash:sha256:fee30791ba1952f3d647feeb46dcc3901bb5d074e0d5742586e56d9ff78c47bc
-FROM registry.codeocean.com/codeocean/stata:15.0-r3.4.2-ubuntu16.04
+# hash:sha256:6932f9403074ddbfb5c09589657464f95f50b19609ec49cb43b6dfa6fa089f8a
+FROM registry.codeocean.com/codeocean/stata:16.0-ubuntu18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
