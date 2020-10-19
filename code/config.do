@@ -16,22 +16,35 @@ log using "../results/${logprefix}_`cdate'.log", replace text
 
 /* define global parameters and paths */
 global precision 0.01
+global confidential no
 
 /* SSB parameters */
+if ( "$confidential" == "no" ) {
+    global SSBtype synthetic
+    global inputdata "../data"
+} 
+if ( "$confidential" == "yes" ) {
+    global SSBtype confidential
+    global inputdata "/confidential/data" // This needs to be mounted when running the capsule!
+    // other confidential parameters are stored outside of this file 
+    include "config-confidential.do"
+} 
+
+// These likely remain unchanged.
 global SSBversion 7_0
-global SSBtype synthetic
 global SSBnum 4
 global SSBprefix = "ssb_v${SSBversion}_${SSBtype}"
 
 /* paths */
-global basepath "/code"      // change this for your specific system
-global inputdata "../data"  // this is where you would read data acquired elsewhere
+global basepath "/code"      // Within the capsule, this is always true. If running this code elsewhere, adjust
+// global inputdata "../data"  // this is where you would read data acquired elsewhere
 global results "../results"       // All tables for inclusion in your paper go here
 global programs "$basepath"    // All programs (which you might "include") are to be found here
 global outputdata "$results/outputdata" // this is where you would write the data you create in this project
 global adobase  "$programs/ado" // Ado packages used by the project are to be found here
 
 cap mkdir $outputdata
+cap mkdir $results
 cap mkdir $adobase
 
 /* install any packages locally */
