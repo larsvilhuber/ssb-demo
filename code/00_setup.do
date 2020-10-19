@@ -8,6 +8,16 @@ include "config.do"
 
 /* Now install them */
 /*--- SSC packages ---*/
-foreach pkg in outreg estout   {
-  ssc install `pkg'
+
+local ssc_packages ///
+            outreg estout 
+                
+if !missing("`ssc_packages'") {
+    foreach pkg in `ssc_packages' {
+        capture which `pkg'
+        if _rc == 111 {                 
+                dis "Installing `pkg'"
+                quietly ssc install `pkg', replace
+        }
+    }
 }
