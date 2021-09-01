@@ -1,7 +1,9 @@
 # Demonstration of Synthetic and Confidential Data Processing
 
-We demonstrate a simple scenario of using CodeOcean to faciliate synthetic and confidential data processing. The purpose of using CodeOcean is to provide users with access to data and coding resources such that
-their analysis is easily reproducible. Reproducibility is important for synthetic data products when there
+We demonstrate a simple scenario of using containers (Docker) hosted on CodeOcean to faciliate synthetic and confidential data processing. The purpose of using containers is to provide users with access to data and coding resources such that
+their analysis is easily reproducible. CodeOcean is a commercial service facilitating that process by making the resources available through a web browser, though the basic functionality can be achieved on any container system. 
+
+Reproducibility is important for synthetic data products when there
 is a validation or verification process involved. In such a setting, data users will first use the synthetic
 data to build and test their code for a desired analysis. Once the user is satisfied with the code used to
 perform their analysis, they can request a validation and their code will be run by the Census Bureau on
@@ -10,12 +12,12 @@ Census Bureau’s Disclosure Review Board requirements before it can be released
 
 In order for this process to run smoothly, the data user’s code needs to be able to run succesfully on any
 machine, regardless of any local settings. This ensures that the user’s code can be easily transferred and
-run on the confidential data. This can be achieved by using a Docker. A Docker contains all of the
-necessary libraries, dependencies, and code needed to run an analysis packaged together in a single
-container. This container can then be downloaded to any machine and used with the local system to run
+run on the confidential data. This can be achieved by using a "container." A container collects all of the
+necessary libraries, dependencies, and code needed to run an analysis in a single
+package. This container can then be downloaded to any machine and used with the local system to run
 the application.
 
-CodeOcean uses a compute capsule, based on a Docker, that can help ensure that the entire code
+CodeOcean uses a compute capsule, based on a Docker container, that can help ensure that the entire code
 building, validation, and output release process is simple and efficient for both the data user and the
 Census Bureau. The Census Bureau can use CodeOcean to house both the synthetic dataset as well as
 setup and configuration code that will assist the data user in creating code that is reproducible. The data
@@ -37,7 +39,7 @@ increases the wait time for data users and the time involved in performing the v
 Bureau. The compute capsules on CodeOcean can prevent this problem by packaging not only the data
 and analysis code, but also specifying the computational environment. By ensuring that everything can
 run within the CodeOcean compute capsule using the synthetic data, it also ensures that everything can
-be run within the CodeOcean compute capsule using the confidential data.
+be run within the associated compute capsule's container using the confidential data, even when the confidential data is not housed on CodeOcean or any publicly accessible service.
 
 ## Development of code on open compute servers using synthetic data
 
@@ -53,6 +55,7 @@ This is solved here through the inclusion of the [config.do](config.do) file, wh
 Logfiles and other outputs can be found on CodeOcean in the right pane, under specific "runs". 
 
 ## The use of external packages
+
 Stata, R, and many other programming languages use external packages of code to augment native capabilities. Initially, these need to be installed over the internet. However, there are various ways to address the issue at subsequent installations:
 
 1. Packages can always be re-installed from source
@@ -66,9 +69,11 @@ CodeOcean has the ability to do the third method, via a "post-install" script an
 This example runs a Mincer equation on the SIPP Synthetic Beta data (need cite). The code is split into 4 pieces, tied together by a script.
 
 ### Script
+
 The script [run](run) ties all Stata programs together. An alternative would be to have both a generic run, plus a master Stata do file. Both options work.
 
 ### Stata programs
+
 - [config.do](config.do) creates various global variables, and initializes a per-program log file, which will show up in `/results`.
 - [00_setup.do](00_setup.do) initializes the code setup for each run. 
   - It could also install Stata packages from SSC (see discussion above).
@@ -77,11 +82,13 @@ The script [run](run) ties all Stata programs together. An alternative would be 
 
 ## Porting to confidential compute server
 
-The compute capsule (or just the code?) are exported (via capsule export, or via git clone) and modified to run on confidential data. The goal is to have the minimal set of modifications necessary to run it (ideally, the environment does all such changes).
+The compute capsule are exported (via "Capsule -> Export"), or via git clone, and modified to run on confidential data. The goal is to have the minimal set of modifications necessary to run it (ideally, the environment does all such changes).
 Two key modifications are needed. 
 
 ### Modifying the container base image
-First, the CodeOcean-specific Linux image used to execute the code (in the case of this capsule, `registry.codeocean.com/codeocean/stata:15.0-r3.4.2-ubuntu16.04`), needs to be replaced with an image that is security-vetted for execution within the secure environment housing the confidential data. In some simple cases, this may be the same image, but stored locally (redirecting registry.codeocean.com to a local server). In other cases, it might be an equivalent image, but independently built. Presumably, CodeOcean uses relatively standard container build scripts, which could be exported and re-implemented within the secure environment.
+
+First, the CodeOcean-specific Linux image used to execute the code (in the case of this capsule, `registry.codeocean.com/codeocean/stata:15.0-r3.4.2-ubuntu16.04`), needs to be replaced with an image that is security-vetted for execution within the secure environment housing the confidential data. In some simple cases, this may be the same image, but stored locally (redirecting registry.codeocean.com to a local server). In other cases, it might be an equivalent image, but independently built. Presumably, CodeOcean uses relatively standard container build scripts, which could be exported and re-implemented within the secure environment. 
 
 ### Modifying the input data
-Second, the synthetic input data available in the public-facing environment needs to be replaced by confidential data, and certain parameters in the `config.do` modified (or dynamic code used in `config.do` that auto-detects the environment. The template code provided here suffices for that now.
+
+Second, the synthetic input data available in the public-facing environment needs to be replaced by confidential data, and certain parameters in the `config.do` modified (or dynamic code used in `config.do` that auto-detects the environment. The template code provided here suffices for that.
