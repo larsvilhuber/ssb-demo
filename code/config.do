@@ -12,7 +12,7 @@
 local c_date = c(current_date)
 local cdate = subinstr("`c_date'", " ", "_", .)
 // local logprefix "logfile" // could be "myprog" or something else or could come from the main program 
-log using "../results/${logprefix}_`cdate'.log", replace text
+log using "../results/${logprefix}_`cdate'.log", replace text name(global)
 
 /* define global parameters and paths */
 global precision 0.01
