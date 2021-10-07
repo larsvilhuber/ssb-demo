@@ -95,16 +95,43 @@ RUN stata 'ssc install estout' \
 
 Once the user has developed all the code, they execute a "reproducible run" on CodeOcean. This ensures that all code executes without error (note that it does *not* ensure that all necessary code has run - code can be commented out or be non-functional). This particular example, when run on CodeOcean infrastructure in 2021, takes about 4 minutes to execute.
 
-Alternatively, the user can export the entire capsule (including data), and execute on their local infrastructure, using an unmodified
+Alternatively, the user can export the entire capsule (including data), rebuild the image locally, and execute on their local infrastructure, using an unmodified
+
+Building the container:
 
 ```
-cd /path/to/downloaded/capsule
+cd /path/to/downloaded/capsule/environment
+VERSION=16
+TAG=$(date +%F)
+MYHUBID=larsvilhuber
+MYIMG=ssb-demo
+DOCKER_BUILDKIT=1 docker build  . -t $MYHUBID/${MYIMG}:$TAG
+[+] Building 5.9s (8/8) FINISHED                                                
+ => [internal] load build definition from Dockerfile                       0.0s
+ => => transferring dockerfile: 365B                                       0.0s
+ => [internal] load .dockerignore                                          0.0s
+ => => transferring context: 2B                                            0.0s
+ => [internal] load metadata for registry.codeocean.com/codeocean/stata:1  0.0s
+ => [internal] load build context                                          0.0s
+ => => transferring context: 133B                                          0.0s
+ => [1/3] FROM registry.codeocean.com/codeocean/stata:16.0-ubuntu18.04     0.0s
+ => CACHED [2/3] COPY stata.lic /usr/local/stata/stata.lic                 0.0s
+ => [3/3] RUN stata 'ssc install estout'     && stata 'ssc install outreg  5.8s
+ => exporting to image                                                     0.0s 
+ => => exporting layers                                                    0.0s 
+ => => writing image sha256:1701246f8ee5582afd6b4606d9f5cf1c5bb43c1eb4e06  0.0s 
+ => => naming to docker.io/larsvilhuber/ssb-demo:2021-10-06                0.0s 
+```
+
+Running the container:
+```
+cd /path/to/downloaded/capsule/
 docker run -it --rm \
-  -v ${STATALIC}/stata.lic.${VERSION}:/usr/local/stata/stata.lic \
   -v $(pwd)/code:/code \
   -v $(pwd)/data:/data \
   -v $(pwd)/results:/results \
-  $MYHUBID/${MYIMG} run
+  -w /code \
+  $MYHUBID/${MYIMG} ./run
 ```
 
 
