@@ -4,5 +4,5 @@ set -ex
 # This is the master script for the capsule. When you click "Reproducible Run", the code in this file will execute.
 for arg in $(ls 0*.do | sort)
 do
-  stata-mp  do $arg
+  stata-mp -q do $arg
 done
