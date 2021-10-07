@@ -133,7 +133,7 @@ docker run -it --rm \
   -w /code \
   $MYHUBID/${MYIMG} ./run
 ```
-
+which runs for about 3 minutes on a 2021-vintage Linux workstation. 
 
 ## Porting to confidential compute server
 
