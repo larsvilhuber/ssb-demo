@@ -6,6 +6,7 @@ global logprefix "01_stats"
 include "config.do"
 
 ls $inputdata
-desc using $inputdata/${SSBprefix}1
+use in 1/100 using $inputdata/${SSBprefix}1
+sum 
 
 
