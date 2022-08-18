@@ -18,6 +18,13 @@ log using "../results/${logprefix}_`cdate'.log", replace text name(global)
 global precision 0.01
 global confidential no
 
+/* this automates the confidential switch */
+capture confirm file /confidential/data 
+if _rc == 0 {
+    global confidential yes
+    display in red "Switching to processing of confidential data"
+}
+
 /* SSB parameters */
 if ( "$confidential" == "no" ) {
     global SSBtype synthetic
@@ -27,7 +34,7 @@ if ( "$confidential" == "yes" ) {
     global SSBtype confidential
     global inputdata "/confidential/data" // This needs to be mounted when running the capsule!
     // other confidential parameters are stored outside of this file 
-    include "config-confidential.do"
+    capture include "config-confidential.do"
 } 
 
 // These likely remain unchanged.
