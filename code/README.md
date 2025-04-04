@@ -51,7 +51,7 @@ You must request the following datasets in your proposal:
 
 | Data file | Source | Notes    |Provided |
 |-----------|--------|----------|---------|
-| `data/ssb_v7_0_synthetic1.dta` | SSB | Synthetic Data | Yes |
+| `data/ssb_v7_0_synthetic1.dta` | SSB | Synthetic Data | No |
 | `confidential-data/ssb_v7_0_confidential1.dta` | SIPP Gold Standard | As per terms of use | No |
 
 
@@ -105,7 +105,7 @@ If using synthetic data: follow instructions in `REPRODUCING.md` in the root dir
 
 Alternatively:
 
-- possibly adjust paths in `00_setup.do`
+- possibly adjust paths in `config.do` (the current paths work within the Docker container)
 - run Stata programs in sequence within the same Stata session, ideally by double-clicking on `00_setup.do` to start the sequence. Even better: create a `main.do` to emulate the functionality of `run`.
 
 ### Details
@@ -116,7 +116,7 @@ Alternatively:
 
 ## List of tables and programs
 
-The code produces no meaningful output at this time, since it is meant for illustrative purposes. Summary stats and a Mincerian regression are reported in the Stata log. For a real application, both programs would generate tables, and output these via `outreg`.
+The code produces no meaningful output at this time, since it is meant for illustrative purposes. Summary stats and a Mincerian regression are reported in the Stata log. Regression results are provided as a CSV file in `results`. For a real application, both programs would generate tables.
 
 The provided code reproduces:
 
@@ -128,7 +128,7 @@ The provided code reproduces:
 | Figure/Table #    | Program                  | Line Number | Output file                      | Note                            |
 |-------------------|--------------------------|-------------|----------------------------------|---------------------------------|
 | Table 1           | code/01_stats.do         |             | In log file                 ||
-| Table 2           | code/02_mincer.do        |             | In log file                       ||
+| Table 2           | code/02_mincer.do        |             | /results/mincer_results.csv                      ||
 
 ## References
 

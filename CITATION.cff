@@ -1,0 +1,32 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Code and Container Specification for SSB-DEMO
+message: >-
+  Article submitted to Harvard Data Science Review. 
+type: software
+authors:
+  - given-names: Lars
+    family-names: Vilhuber
+    email: lars.vilhuber@cornell.edu
+    affiliation: Cornell University
+    orcid: 'https://orcid.org/0000-0001-5733-8932'
+  - given-names: Evan
+    family-names: Totty
+    email: evan.scott.totty@census.gov
+    affiliation: U.S. Census Bureau
+    orcid: 'https://orcid.org/0009-0006-1639-320X'
+  - given-names: Gary
+    family-names: Benedetto
+    email: Gary.Linus.Benedetto@census.gov
+    affiliation: U.S. Census Bureau
+    orcid: https://orcid.org/0000-0002-1559-2059
+repository-code: >-
+  https://github.com/larsvilhuber/ssb-demo/
+abstract: >-
+  This repository contains the code and container specification for the
+  SSB-DEMO project, which is a demonstration of the use of containers for validation of analysis prepared on synthetic data. 
+license: CC0
+date-released: '2025-04-03'
