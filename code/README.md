@@ -20,9 +20,9 @@ This replication package is meant to be executed both in public and restricted-a
 
 ### License for Data
 
-The synthetic data are licensed under a custom Census Bureau license, alerting users to the experimental status, and prohibiting further distribution. See LICENSE.txt for details.
+The synthetic data are licensed under a custom Census Bureau license, alerting users to the experimental status, and prohibiting further distribution. See <https://www.census.gov/programs-surveys/sipp/guidance/sipp-synthetic-beta-data-product.html#par_textimage_5> for details.
 
-The confidential data require an application to the U.S. Census Bureau for use. Access can be requested through the FSRDC system (URL HERE). The authors obtained access directly via employee access; however, that is not necessary for other researchers. (NOTE: this is for illustrative purposes only: no code was actually run on confidential data.)
+The confidential data require an application to the U.S. Census Bureau for use. Access can be requested through the FSRDC system (<https://www.census.gov/topics/research/guidance/restricted-use-microdata/standard-application-process.html>). The authors obtained access directly via employee access; however, that is not necessary for other researchers. (NOTE: this is for illustrative purposes only: no code was actually run on confidential data.)
 
 ### Summary of Availability
 
@@ -36,11 +36,11 @@ The confidential data require an application to the U.S. Census Bureau for use. 
 
 #### SIPP Synthetic Beta 7.0
 
-(describe data here)
+> "The SIPP Synthetic Beta (SSB) is a Census Bureau product that integrates person-level micro-data from a household survey with administrative tax and benefit data. These data link respondents from the Survey of Income and Program Participation (SIPP) to Social Security Administration (SSA)/Internal Revenue Service (IRS) Form W-2 records and SSA records of retirement and disability benefit receipt, and were produced by Census Bureau staff economists and statisticians in collaboration with researchers at Cornell University, the SSA and the IRS. The purpose of the SSB is to provide access to linked data that are usually not publically available due to confidentiality concerns. To overcome these concerns, Census synthesizes, or models, all the variables in a way that changes the record of each individual so as to preserve the underlying covariate relationships between the variables." [1](https://www.census.gov/programs-surveys/sipp/guidance/sipp-synthetic-beta-data-product.html)
 
 #### SIPP Gold Standard File 7.0
 
-Validated results in the paper (would) use confidential microdata from the U.S. Census Bureau. To gain access to the Census microdata, follow the directions here on how to write a proposal for access to the data via a Federal Statistical Research Data Center: https://www.census.gov/ces/rdcresearch/howtoapply.html. 
+Validated results in the paper (would) use confidential microdata from the U.S. Census Bureau. To gain access to the Census microdata, follow the directions here on how to write a proposal for access to the data via a Federal Statistical Research Data Center: <https://www.census.gov/topics/research/guidance/restricted-use-microdata/standard-application-process.html>
 
 You must request the following datasets in your proposal:
 
@@ -95,19 +95,13 @@ A standard 2018-era laptop with 4GB of RAM should be sufficient to run the analy
 
 
 
-## Description of programs/code
-
-(pending)
-
-### License for Code
-
-
+## License for Code
 
 The code is licensed under CC0 (public dedication) license. See [code/LICENSE](LICENSE) for details.
 
 ## Instructions to Replicators
 
-If using synthetic data: follow instructions in `REPLICATION.md` in the root directory to run using Docker, which uses the `run` main script.
+If using synthetic data: follow instructions in `REPRODUCING.md` in the root directory to run using Docker, which uses the `run` main script.
 
 Alternatively:
 
@@ -116,7 +110,9 @@ Alternatively:
 
 ### Details
 
-(coming)
+- `00_setup.do` will install any programs, and create output folders, if these don't yet exist.
+- `01_stats.do` will generate some statistics. Statistics are printed to console/log (no separate output file is generated) (not compliant)
+- `02_mincer.do` will clean the data and run a Mincer-style regression. Regression output is printed to console/log (no separate output file is generated) (not compliant)
 
 ## List of tables and programs
 
@@ -131,18 +127,20 @@ The provided code reproduces:
 
 | Figure/Table #    | Program                  | Line Number | Output file                      | Note                            |
 |-------------------|--------------------------|-------------|----------------------------------|---------------------------------|
-| Table 1           | code/01_stats.do         |             | TBD                 ||
-| Table 2           | code/02_mincer.do        |             | TBD                       ||
+| Table 1           | code/01_stats.do         |             | In log file                 ||
+| Table 2           | code/02_mincer.do        |             | In log file                       ||
 
 ## References
 
-(to be updated)
+- U.S. Census Bureau. “SIPP Synthetic Beta Version 7.0.” [Computer file]. Washington,DC and Ithaca, NY, USA: Cornell University, Synthetic Data Server [distributor], 2015. <https://www.census.gov/programs-surveys/sipp/guidance/sipp-synthetic-beta-data-product.html>
 
-- SIPP Gold Standard
-- SSB
+- U.S. Census Bureau. “SIPP Gold Standard 7.0.” [Computer file]. Washington,DC, USA: Federal Statistical Research Data Center [distributor], 2015. <https://www.census.gov/topics/research/guidance/restricted-use-microdata/standard-application-process.html>
+
 
 ---
 
 ## Acknowledgements
 
-Derived from Vilhuber et al (2020). Some content on this page was copied from [Hindawi](https://www.hindawi.com/research.data/#statement.templates). Other content was adapted  from [Fort (2016)](https://doi.org/10.1093/restud/rdw057), Supplementary data, with the author's permission.
+Code provided for illustrative purposes by Evan Totty and Gary Benedetto.
+
+Derived from Vilhuber et al (2020). 
