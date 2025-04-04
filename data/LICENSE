@@ -1,12 +1,8 @@
 Census Experimental Data Product
 
-By using this Data Product, you acknowledge and are aware that
+The data used for this project are subject to a custom license agreement (2024-07 version). In particular
 
-- the Data are experimental, and are not guaranteed to generate valid results in any particular analysis.
-- Inferences should be based on the confidential data, which are accessible via a request to the FSRDC, or via the validation server.
-- All analysis submitted to the validation server may be used to improve future versions of the data product.
-
-(This is not an official text, it is a sketch of a possible user agreement)
+> Authorized users of the SIPP Synthetic BETA therefore commit to not distribute, disclose, or replicate any information contained in the SIPP Synthetic BETA – including the BETA file itself – with unauthorized users.
 
 The actual data can be requested at <https://www.census.gov/programs-surveys/sipp/guidance/sipp-synthetic-beta-data-product.html>. 
 
